@@ -29,7 +29,10 @@ class TwitterScraper:
 
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        driver_path = ChromeDriverManager().install()
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        driver_path = ChromeDriverManager(chrome_type="chromium").install()
+        driver = webdriver.Chrome(service=Service(driver_path), options=chrome_options)
         service = Service(driver_path)
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
 
