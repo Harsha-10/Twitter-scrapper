@@ -5,3 +5,4 @@ requests==2.25.1
 webdriver-manager==3.5.0
 beautifulsoup4==4.9.3
 python-dotenv==0.19.2
+dnspython
