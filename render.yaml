@@ -1,0 +1,15 @@
+services:
+  - name: web-service
+    type: web
+    runtime: python
+    buildCommand: |
+      pip install -r requirements.txt
+      ./build.sh
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: CHROMEDRIVER_PATH
+        value: "/usr/bin/chromedriver"
+      - key: GOOGLE_CHROME_BIN
+        value: "/usr/bin/google-chrome"
