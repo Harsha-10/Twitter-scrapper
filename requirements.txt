@@ -1,4 +1,6 @@
-Flask
-selenium
-pymongo
-requests
+Flask==2.0.1
+selenium==4.0.0
+pymongo==3.11.4
+requests==2.25.1
+webdriver-manager==3.5.0
+beautifulsoup4==4.9.3
