@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            padding: 15px 30px;
+            margin-top:10px;
+            background-color: #e64833;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #c13523;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        .result ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .result ul li {
+            padding: 10px 0;
+            font-size: 17px;
+        }
+        #loading-message {
+            margin-top: 20px;
+            color: #e64833;
+            font-style: italic;
+        }
+        pre {
+            background-color: #eef1f7;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-top: 20px;
+            font-size: 15px;
+            text-align: left;
+        }
+        .ip-display {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trending Topics</h1>
+
+        <form action="{{ url_for('run_script') }}" method="POST">
+            <button class="btn" type="submit">Click here to run the script</button>
+        </form>
+
+        <div id="loading-message" style="display: none;">Running the scraper, please wait...</div>
+        {% if script_time %}
+        <div style="margin-top: 20px;">
+            <h3>Last Script Run:</h3>
+            <p>{{ script_time }}</p>
+        </div>
+        {% endif %}
+        <div id="last-four-results" class="result">
+            {% if last_four %}
+                <h2>Trending Topics</h2>
+                <ul>
+                    {% for trend in last_four %}
+                        <li><strong>{{ trend.trend_name }}</strong> - {{ trend.location }} ({{ trend.posts }} posts)</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No trending topics available.</p>
+            {% endif %}
+        </div>
+
+        <div id="json-results" class="result">
+            {% if last_four %}
+                <h3>Here’s a JSON extract of this record from the MongoDB:</h3>
+                <pre>{{ json_data | tojson(indent=4) }}</pre>
+                <div class="ip-display">IP Address used for this query: {{ ip_address }}</div>
+                <form action="{{ url_for('run_script') }}" method="POST">
+                    <button class="btn" type="submit">Click here to run the query again</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if last_four %}
+                document.getElementById("last-four-results").style.display = "block";
+                document.getElementById("json-results").style.display = "block";
+            {% endif %}
+        });
+
+        const form = document.querySelector('form');
+        const loadingMessage = document.getElementById('loading-message');
+        const resultsDiv = document.getElementById('last-four-results');
+
+        form.addEventListener('submit', function() {
+            loadingMessage.style.display = 'block';
+            resultsDiv.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
