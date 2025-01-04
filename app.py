@@ -1,12 +1,12 @@
 from flask import Flask, render_template, redirect, url_for
 import scraper
 from pymongo import MongoClient
-import json
 import requests
 from bson import ObjectId
+import os
 from datetime import datetime
 app = Flask(__name__)
-MONGO_URI = "mongodb+srv://docsuser:docsuser123@cluster0.lb8gg2f.mongodb.net/"
+MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
 db = client["twitter_scrapper"]
 collection = db["trending"]
