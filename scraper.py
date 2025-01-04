@@ -30,7 +30,7 @@ class TwitterScraper:
 
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        driver = Chrome(service=Service(ChromeDriverManager().install()))
+        driver = webdriver.Chrome('chromedriver.exe')
 
     def get_ip_address(self):
         try:
