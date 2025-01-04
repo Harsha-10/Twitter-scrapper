@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver import Chrome
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -29,7 +30,7 @@ class TwitterScraper:
 
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome()
+        driver = Chrome(service=Service(ChromeDriverManager().install()))
 
     def get_ip_address(self):
         try:
