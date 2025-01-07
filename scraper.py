@@ -29,9 +29,12 @@ class TwitterScraper:
         self.collection = self.db["trending"]
 
         chrome_options = webdriver.ChromeOptions()
-        chrome_driver_manager = ChromeDriverManager()
         chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(service=Service(chrome_driver_manager.install()), options=chrome_options)
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+
+        chrome_driver_path = ChromeDriverManager(version="131.0.6778.205").install()
+        self.driver = webdriver.Chrome(service=Service(chrome_driver_path), options=chrome_options)
 
     def get_ip_address(self):
         try:
@@ -56,6 +59,7 @@ class TwitterScraper:
                 username_field.send_keys(Keys.RETURN)
                 try:
                     WebDriverWait(self.driver, 2).until(EC.presence_of_element_located((By.NAME, "text")))
+
                     email_input = self.driver.find_elements(By.NAME, "text")
                     if email_input:
                         email_input[0].send_keys(self.TWITTER_PHONE)
@@ -64,18 +68,10 @@ class TwitterScraper:
                     pass
 
                 WebDriverWait(self.driver, 2).until(EC.presence_of_element_located((By.NAME, "password")))
+
                 password_field = self.driver.find_element(By.NAME, "password")
                 password_field.send_keys(self.TWITTER_PASSWORD)
                 password_field.send_keys(Keys.RETURN)
-
-                try:
-                    WebDriverWait(self.driver, 2).until(EC.presence_of_element_located((By.NAME, "text")))
-                    email_input = self.driver.find_elements(By.NAME, "text")
-                    if email_input:
-                        email_input[0].send_keys(self.TWITTER_PHONE)
-                        email_input[0].send_keys(Keys.RETURN)
-                except TimeoutException:
-                    pass
 
                 print("Login successful.")
                 return True
