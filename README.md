@@ -57,7 +57,7 @@ $ mongod // If running locally
 
 ## Running the Scraper
 ```bash
-$ python twitter_scraper.py
+$ python app.py
 ```
 
 ## Troubleshooting
