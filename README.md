@@ -42,7 +42,7 @@ SCRAPERAPI_KEY=your_proxy_api_key
 TWITTER_USERNAME=your_twitter_username
 TWITTER_PASSWORD=your_twitter_password
 TWITTER_PHONE=your_phone_or_email_if_asked
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority / https://localhost:27017
 ```
 
 ### 5. Install Chromedriver (Automatic Download)
@@ -52,7 +52,7 @@ $ pip install webdriver-manager
 
 ### 6. Ensure MongoDB is Running
 ```bash
-$ mongod
+$ mongod // If running locally
 ```
 
 ## Running the Scraper
