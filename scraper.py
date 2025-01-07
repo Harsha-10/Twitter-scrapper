@@ -29,8 +29,9 @@ class TwitterScraper:
         self.collection = self.db["trending"]
 
         chrome_options = webdriver.ChromeOptions()
+        chrome_driver_manager = ChromeDriverManager()
         chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager.install()), options=chrome_options)
+        self.driver = webdriver.Chrome(service=Service(chrome_driver_manager.install()), options=chrome_options)
 
     def get_ip_address(self):
         try:
