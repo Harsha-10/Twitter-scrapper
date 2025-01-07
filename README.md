@@ -1,8 +1,10 @@
-# Twitter-scrapper
 # Twitter Scraper
 
 A Python-based Twitter scraper that logs into Twitter (X), fetches trending topics, and stores the data in MongoDB. The scraper uses Selenium for web automation and BeautifulSoup for parsing.
 
+The deployment was not successful due to a ChromeDriver error. However, the scraper functionality is working as expected.  
+To demonstrate the scraper in action, please refer to the video below: 
+[![Scraper demo](https://raw.githubusercontent.com/harsha-10/Twitter-scrapper/main/assets/scrapper.mp4)]
 ## Features
 - Automated Twitter login
 - Fetch trending topics
