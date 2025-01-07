@@ -30,8 +30,9 @@ class TwitterScraper:
 
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        service = Service(executable_path='/usr/bin/chromedriver')
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        CHROMEDRIVER_PATH = '/opt/render/project/chromedriver'
+        service = Service(executable_path=CHROMEDRIVER_PATH)
+        self.driver = webdriver.Chrome(service=service, options=chrome_options)
 
     def get_ip_address(self):
         try:
