@@ -30,7 +30,7 @@ class TwitterScraper:
 
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        CHROMEDRIVER_PATH = '/opt/render/project/chromedriver'
+        CHROMEDRIVER_PATH = './chromedriver.exe'
         service = Service(executable_path=CHROMEDRIVER_PATH)
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
 
