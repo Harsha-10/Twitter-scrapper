@@ -33,7 +33,7 @@ class TwitterScraper:
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
-        chrome_driver_path = ChromeDriverManager().install()
+        chrome_driver_path = r'./chromedriver.exe'
         self.driver = webdriver.Chrome(service=Service(chrome_driver_path), options=chrome_options)
 
     def get_ip_address(self):
