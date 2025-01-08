@@ -4,10 +4,11 @@ A Python-based Twitter scraper that logs into Twitter (X), fetches trending topi
 
 The deployment was not successful due to a ChromeDriver error. However, the scraper functionality is working as expected.  
 To demonstrate the scraper in action, please refer to the video below: 
-<video width="720" height="400" controls>  
-  <source src="./scrapper.mp4" type="video/mp4">  
-  Your browser does not support the video tag.  
-</video>
+
+
+https://github.com/user-attachments/assets/6cf143b3-cef0-4b9d-a897-ed07e084fcba
+
+
 ## Features
 - Automated Twitter login
 - Fetch trending topics
